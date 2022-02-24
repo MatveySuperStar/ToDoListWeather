@@ -1,4 +1,4 @@
-import { defaultState } from "./state"
+import { defaultState } from "../state"
 
 const ADD_TEXT = "ADD_TEXT"
 const REMOVE_TEXT = "REMOVE_TEXT"
@@ -18,4 +18,4 @@ export const inputReducer = (state = defaultState, action) => {
 }
 
 export const addTextAction = (payload) => ({type: ADD_TEXT, payload})
-export const removeTextAction = (payload) => ({type: REMOVE_TEXT, payload})
+export const removeTextAction = (payload) => ({type: REMOVE_TEXT, payload:""})

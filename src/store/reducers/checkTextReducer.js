@@ -1,4 +1,4 @@
-import { defaultState } from "./state"
+import { defaultState } from "../state"
 
 const CHECK_TEXT = "CHECK_TEXT"
 

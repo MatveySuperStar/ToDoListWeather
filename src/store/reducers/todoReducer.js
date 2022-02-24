@@ -1,4 +1,4 @@
-import { defaultState } from "./state"
+import { defaultState } from "../state"
 
 const ADD_RECORD = "ADD_RECORD"
 const REMOVE_RECORD = "REMOVE_RECORD"

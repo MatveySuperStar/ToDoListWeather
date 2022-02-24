@@ -1,7 +1,7 @@
 import { createStore, combineReducers } from "redux";
-import { todoReducer } from "./todoReducer";
-import { inputReducer } from "./inputReducer";
-import { checkTextReducer } from "./checkTextReducer";
+import { todoReducer } from "./reducers/todoReducer";
+import { inputReducer } from "./reducers/inputReducer";
+import { checkTextReducer } from "./reducers/checkTextReducer";
 
 const rootReducer = combineReducers({
   todolist: todoReducer,

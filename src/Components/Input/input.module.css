@@ -1,0 +1,22 @@
+.form {
+  border: 1px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border: 0px;
+  border-bottom: 1px solid;
+  outline: none;
+} 
+
+.active {
+  display: block;
+  border: 1px solid red;
+  color: red;
+  padding: 20px;
+} 
+
+.disable {
+  display: none;
+} 

@@ -1,8 +1,8 @@
 import React from 'react';
 import TodoItem from './TodoItem';
 import { useDispatch, useSelector } from 'react-redux';
-import './todolist.css';
-import { removeTodoAction } from '../../store/todoReducer';
+import { removeTodoAction } from '../../store/reducers/todoReducer';
+import style from './todo.module.css';
 
 const TodoList = () => {
   const todolist = useSelector(state => state.todolist.todolist)
@@ -13,10 +13,11 @@ const TodoList = () => {
   }
 
   return (
-    <div className='todo-list'>
+    <div className={style.list}>
+      <h2 className={style.title}>TO DO LISTS</h2>
       { todolist.length ? 
         todolist.map(item => <TodoItem key={item.id} item={item} removeHandler={removeHandler}/>) :
-        <p>Записей пока нет</p>
+        <h2 className={style.message}>No entries yet</h2>
       }
     </div>
   );
