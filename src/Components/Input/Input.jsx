@@ -26,11 +26,14 @@ const Input = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
 
-    if(check) {
-      const weather = await getWeather();
-      const id = randomNumber();
+    if(check && text.length > 0) {
+      const weather = await getWeather()
+      const id = randomNumber()
+
       dispatch(removeTextAction())
       dispatch(addTodoAction({id, text, date: dateBuilder(new Date()), weather}))
+    } else {
+      dispatch(checkTextAction(false))
     } 
   } 
 
