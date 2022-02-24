@@ -1,26 +1,35 @@
-import React, { useState} from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTextAction, removeTextAction } from '../../store/inputReducer';
+import { addTodoAction } from '../../store/todoReducer';
+import { checkTextAction } from '../../store/checkTextReducer';
+import { dateBuilder, randomNumber, getWeather } from './functions';
 import './input.css';
 
-const Input = () => {
 
-  const [error, setError] = useState(false);
-  const [text, setText] = useState("");
+const Input = () => {
+  const dispatch = useDispatch();
+  const text = useSelector(state => state.input.text)
+  const check = useSelector(state => state.checkText.checktext)
 
   const checkLength = (event) => {
-    if(event.target.value.length >= 10) {
-      setError(true)
+    if(text.length >= 300) {
+      dispatch(checkTextAction(false))
     } else {
-      setError(false)
+      dispatch(checkTextAction(true))
     }
-    setText(event.target.value)
+
+    dispatch(addTextAction(event.target.value))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
-    if(!error) {
-      console.log(text)
+    if(check) {
+      const weather = await getWeather();
+      const id = randomNumber();
+      dispatch(removeTextAction(""))
+      dispatch(addTodoAction({id, text, date: dateBuilder(new Date()), weather}))
     }
   } 
 
@@ -28,7 +37,7 @@ const Input = () => {
     <form className="form" onSubmit={handleSubmit}>
       <p className='form__title'>Add Note ...</p>
       <input className='form__input' value={text} onChange={checkLength}></input>
-      <p className={`form__error_${error ? 'active' : 'disable'}`}>Ошибка</p>
+      <p className={`form__error_${check ? 'disable' : 'active'}`}>Ошибка</p>
     </form>
   );
 };

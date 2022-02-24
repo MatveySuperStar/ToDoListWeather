@@ -1,13 +1,23 @@
-import React, {useState, useEffect } from 'react';
+import React from 'react';
 import TodoItem from './TodoItem';
+import { useDispatch, useSelector } from 'react-redux';
+import './todolist.css';
+import { removeTodoAction } from '../../store/todoReducer';
 
 const TodoList = () => {
-
-  const [item, setItem] = useState([]);
+  const todolist = useSelector(state => state.todolist.todolist)
+  const dispatch = useDispatch()
+  
+  const removeHandler = (id) => {
+    dispatch(removeTodoAction(id));
+  }
 
   return (
-    <div>
-      <TodoItem />
+    <div className='todo-list'>
+      { todolist.length ? 
+        todolist.map(item => <TodoItem key={item.id} item={item} removeHandler={removeHandler}/>) :
+        <p>Записей пока нет</p>
+      }
     </div>
   );
 };
